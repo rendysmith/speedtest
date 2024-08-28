@@ -1,6 +1,12 @@
-import speedtest
+import time
 
-def test_speed():
+import speedtest
+import asyncio
+
+from utils.constant import ss_id, tab_name
+from utils.gs_editor import get_service, append_data_to_sheet_scope
+
+async def test_speed():
     st = speedtest.Speedtest()
 
     # Получаем серверы и выбираем лучший
@@ -18,11 +24,22 @@ def test_speed():
 
     return download_speed_mbps, upload_speed_mbps
 
+async def main_test():
+    # Пример использования
+    download, upload = await test_speed()
+    print(f"Download speed: {download:.2f} Mbps")
+    print(f"Upload speed: {upload:.2f} Mbps")
+
+    service = await get_service()
+
+    datas = {'Date': time.ctime(),
+             'Download': download,
+             'Upload': upload}
+
+    await append_data_to_sheet_scope(service, ss_id, tab_name, datas)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # Пример использования
-    download, upload = test_speed()
-    print(f"Download speed: {download:.2f} Mbps")
-    print(f"Upload speed: {upload:.2f} Mbps")
+    asyncio.run(main_test())
+
 
