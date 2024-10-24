@@ -2,25 +2,15 @@ import asyncio
 import json
 import os
 import time
-#import time
-import numpy as np
-
-import traceback
 
 import warnings
 import gspread
-#from oauth2client.service_account import ServiceAccountCredentials
 
-#import gspread_dataframe as gd
-#from gspread_dataframe import set_with_dataframe, get_as_dataframe
-#from gs_update_utils import setup_google_sheets, upload_table_to_google_sheet
 from datetime import datetime
 
-#from googleapiclient.discovery import build
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-
 
 import pandas as pd
 
@@ -42,12 +32,6 @@ with open(path_to_credentials, 'r') as file:
 print(data['client_email'])
 
 gc = gspread.service_account(path_to_credentials)
-
-
-    # SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-    # SERVICE_ACCOUNT_FILE = os.path.join(abspath, 'service_account.json')
-    # credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-    # service = build('sheets', 'v4', credentials=credentials).spreadsheets().values()
 
 async def get_service():
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']

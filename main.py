@@ -6,7 +6,8 @@ import asyncio
 from utils.constant import ss_id, tab_name
 from utils.gs_editor import get_service, append_data_to_sheet_scope
 
-async def test_speed():
+async def tst_speed():
+    print('- Start!')
     st = speedtest.Speedtest()
 
     # Получаем серверы и выбираем лучший
@@ -24,9 +25,9 @@ async def test_speed():
 
     return download_speed_mbps, upload_speed_mbps
 
-async def main_test():
+async def main_tst():
     # Пример использования
-    download, upload = await test_speed()
+    download, upload = await tst_speed()
     print(f"Download speed: {download:.2f} Mbps")
     print(f"Upload speed: {upload:.2f} Mbps")
 
@@ -40,6 +41,6 @@ async def main_test():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    asyncio.run(main_test())
+    asyncio.run(main_tst())
 
 
