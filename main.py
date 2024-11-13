@@ -1,7 +1,7 @@
 import time
+import asyncio
 
 import speedtest
-import asyncio
 
 from utils.constant import ss_id, tab_name
 from utils.gs_editor import get_service, append_data_to_sheet_scope
